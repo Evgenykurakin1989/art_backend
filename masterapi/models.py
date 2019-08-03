@@ -3,15 +3,19 @@ from tenants.models import TenantMaster
 from django.utils.translation import gettext as _
 # Create your models here.
 
+
 # Timestamp model
 class TimeStampModel(models.Model):
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     class Meta:
         abstract = True
 
 
 class UserGroup(TimeStampModel):
+
     class Meta:
         verbose_name = _("User Group")
         verbose_name_plural = _("User Group")
@@ -21,11 +25,14 @@ class UserGroup(TimeStampModel):
     def __str__(self):
         return self.userType
 
+
 # F000015 Plan
 class Plan(TimeStampModel):
+
     class Meta:
         verbose_name = _("Plan")
         verbose_name_plural = _("Plan")
+
     plancode = models.CharField(max_length=100)
     plandescription = models.TextField()
     tier = models.CharField(max_length=50)
@@ -40,8 +47,10 @@ class Plan(TimeStampModel):
     def __str__(self):
         return self.plancode
 
+
 # Program Object Definition
 class ProgramObject(models.Model):
+
     class Meta:
         verbose_name = _("Program Object Definition")
         verbose_name_plural = _("Program Object Definition")
@@ -56,6 +65,7 @@ class ProgramObject(models.Model):
 
 # F000011 APIMaster
 class APIMaster(TimeStampModel):
+
     class Meta:
         verbose_name = _("API Master")
         verbose_name_plural =_("API Master")
@@ -74,8 +84,10 @@ class APIMaster(TimeStampModel):
     status = models.BooleanField(default=False)
     json = models.TextField(default="{}")
 
+
 #F000091 User
 class User(TimeStampModel):
+
     class Meta:
         verbose_name = _("User in Tenant")
         verbose_name_plural = _("User in Tenant")
@@ -92,8 +104,10 @@ class User(TimeStampModel):
     contact = models.CharField(max_length=50, blank=True)
     active = models.BooleanField(default=False)
 
+
 #F00001T Field Configurations
 class FieldConfigure(TimeStampModel):
+
     class Meta:
         verbose_name = _("Field Configurations")
         verbose_name_plural = _("Field Configurations")
@@ -109,6 +123,7 @@ class FieldConfigure(TimeStampModel):
 
 #F000012 Field UI Configurations
 class FieldUIConfigure(TimeStampModel):
+
     class Meta:
         verbose_name = _("Field UI Configurations")
         verbose_name_plural = _("Field UI Configurations")
@@ -132,6 +147,7 @@ class FieldUIConfigure(TimeStampModel):
 
 #F0000Z	Field Values Definations
 class FieldValDef(TimeStampModel):
+
     class Meta:
         verbose_name = _("Field Values Definations")
         verbose_name_plural = _("Field Values Definations")
@@ -142,8 +158,10 @@ class FieldValDef(TimeStampModel):
     type     = models.CharField(max_length=100, default='json')
     value    = models.TextField(default="{}")
 
+
 #F00005	Config
 class Config(TimeStampModel):
+
     class Meta:
         verbose_name = _("Config")
         verbose_name_plural = _("Config")
@@ -155,8 +173,10 @@ class Config(TimeStampModel):
     match = models.FloatField(null=True)
     loss = models.FloatField(null=True)
 
+
 #F000051 Hconfig
 class Hconfig(TimeStampModel):
+
     class Meta:
         verbose_name = _("HConfig")
         verbose_name_plural = _("HConfig")
@@ -168,6 +188,7 @@ class Hconfig(TimeStampModel):
 
 #F000081 Menu Definition
 class MenuDef(TimeStampModel):
+
     class Meta:
         verbose_name = _("Menu Definition")
         verbose_name_plural = _("Menu Definition")
@@ -183,8 +204,10 @@ class MenuDef(TimeStampModel):
     crud = models.CharField(max_length=50, blank=True, null=True)
     view = models.NullBooleanField(default=None)
 
+
 #F00003	Customer
 class Customer(TimeStampModel):
+
     class Meta:
         verbose_name = _("Customer")
         verbose_name_plural = _("Customer")
@@ -207,8 +230,10 @@ class Customer(TimeStampModel):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
 
+
 #F000031 Partner
 class Partner(TimeStampModel):
+
     class Meta:
         verbose_name = _("Partner")
         verbose_name_plural = _("Partner")
@@ -234,6 +259,7 @@ class Partner(TimeStampModel):
 
 #F000032 Vendor
 class Vendor(TimeStampModel):
+
     class Meta:
         verbose_name = _("Vendor")
         verbose_name_plural = _("Vendor")
@@ -259,6 +285,7 @@ class Vendor(TimeStampModel):
 
 #F000034 Employee
 class Employee(TimeStampModel):
+
     class Meta:
         verbose_name = _("Employee")
         verbose_name_plural = _("Employee")

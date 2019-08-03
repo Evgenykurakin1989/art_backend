@@ -10,6 +10,7 @@ AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 # Create your models here.
 
 class ResetPasswordToken(models.Model):
+
     class Meta:
         verbose_name = _("Password Reset Token")
         verbose_name_plural = _("Passwrod Reset Tokens")
@@ -53,11 +54,14 @@ class ResetPasswordToken(models.Model):
         if not self.key:
             self.key = self.generate_key()
         return super(ResetPasswordToken, self).save(*args, **kwargs)
+
     def __str__(self):
         return "Password reset token for user {user}".format(user=self.user)
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
+
     def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email
@@ -88,6 +92,7 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser):
+
     objects = UserManager()
     date_added = models.DateField(auto_now=False, auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
@@ -104,6 +109,7 @@ class User(AbstractBaseUser):
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+
     def get_full_name(self):
     # The user is identified by their email address
         return self.first_name + " " + self.last_name

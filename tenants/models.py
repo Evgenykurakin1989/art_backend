@@ -3,10 +3,13 @@ from django.utils.translation import gettext as _
 # Create your models here.
 from tenant_schemas.models import TenantMixin
 
+
 class TenantMaster(TenantMixin):
+
     class Meta:
         verbose_name = _("Tenants")
         verbose_name_plural = _("Tenants")
+
 
     company_name = models.CharField(max_length=100, null=False, blank=False)
     company_description = models.TextField(default="")
@@ -21,8 +24,10 @@ class TenantMaster(TenantMixin):
     created_on = models.DateField(auto_now_add=True)
     auto_create_schema = True
 
+
     def __unicode__(self):
         return self.company_name
+
 
     def __str__(self):
         return self.company_name

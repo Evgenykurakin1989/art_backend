@@ -25,6 +25,7 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 # Create your views here.
 
+
 class LoginView(APIView):
     """
     Login using username or email and password
@@ -201,6 +202,7 @@ class ResetPasswordRequestToken(APIView):
                 }, status=status.HTTP_200_OK
             )
 
+
     def send_mail(self, token):
         subject, from_email, to = 'hello', 'no-reply@gmail.com', token.user.email
         text_content = 'This is an important message.'
@@ -211,6 +213,7 @@ class ResetPasswordRequestToken(APIView):
         msg.attach_alternative(html_content, "text/html")
         msg.send()
         return True
+
 
 class ResetPasswordConfirm(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -265,6 +268,7 @@ class ResetPasswordConfirm(APIView):
             "status":"success",
             "message":"successfully changed"
         })
+
 
 @api_view(['POST'])
 @permission_classes((TenantAdminPermission, ))
